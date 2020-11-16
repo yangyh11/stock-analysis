@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yangyh.stockdemo.mapper.CapitalInfoMapper">
+
+    <resultMap id="RM_CapitalInfo" type="com.yangyh.stockdemo.entity.CapitalInfoEntity">
+            <result column="id" property="id"/>
+            <result column="brokercode" property="brokercode"/>
+            <result column="brokername" property="brokername"/>
+            <result column="tradeday" property="tradeday"/>
+            <result column="allamount" property="allamount"/>
+            <result column="marketvalue" property="marketvalue"/>
+            <result column="profitlossrate" property="profitlossrate"/>
+            <result column="count" property="count"/>
+            <result column="newnum" property="newnum"/>
+            <result column="increasenum" property="increasenum"/>
+            <result column="decreasenum" property="decreasenum"/>
+            <result column="continuousdays" property="continuousdays"/>
+            <result column="holdrate" property="holdrate"/>
+    </resultMap>
+
+    <sql id="CapitalInfo_columns">
+            id,
+            brokercode,
+            brokername,
+            tradeday,
+            allamount,
+            marketvalue,
+            profitlossrate,
+            count,
+            newnum,
+            increasenum,
+            decreasenum,
+            continuousdays,
+            holdrate
+    </sql>
+
+    <sql id="CapitalInfo_where">
+        <where>
+                <if test="id != null">
+                    and id = #{id}
+                </if>
+                <if test="brokercode != null">
+                    and brokercode = #{brokercode}
+                </if>
+                <if test="brokername != null">
+                    and brokername = #{brokername}
+                </if>
+                <if test="tradeday != null">
+                    and tradeday = #{tradeday}
+                </if>
+                <if test="allamount != null">
+                    and allamount = #{allamount}
+                </if>
+                <if test="marketvalue != null">
+                    and marketvalue = #{marketvalue}
+                </if>
+                <if test="profitlossrate != null">
+                    and profitlossrate = #{profitlossrate}
+                </if>
+                <if test="count != null">
+                    and count = #{count}
+                </if>
+                <if test="newnum != null">
+                    and newnum = #{newnum}
+                </if>
+                <if test="increasenum != null">
+                    and increasenum = #{increasenum}
+                </if>
+                <if test="decreasenum != null">
+                    and decreasenum = #{decreasenum}
+                </if>
+                <if test="continuousdays != null">
+                    and continuousdays = #{continuousdays}
+                </if>
+                <if test="holdrate != null">
+                    and holdrate = #{holdrate}
+                </if>
+        </where>
+    </sql>
+
+    <select id="queryByMap" resultMap="RM_CapitalInfo" parameterType="java.util.Map" useCache="true">
+        select
+        <include refid="CapitalInfo_columns"/>
+        from capital_info
+        <include refid="CapitalInfo_where"/>
+    </select>
+
+    <insert id="save" parameterType="com.yangyh.stockdemo.entity.CapitalInfoEntity">
+        insert into capital_info (
+            id,
+            brokercode,
+            brokername,
+            tradeday,
+            allamount,
+            marketvalue,
+            profitlossrate,
+            count,
+            newnum,
+            increasenum,
+            decreasenum,
+            continuousdays,
+            holdrate
+        )
+        values (
+            #{id},
+            #{brokercode},
+            #{brokername},
+            #{tradeday},
+            #{allamount},
+            #{marketvalue},
+            #{profitlossrate},
+            #{count},
+            #{newnum},
+            #{increasenum},
+            #{decreasenum},
+            #{continuousdays},
+            #{holdrate}
+        )
+    </insert>
+
+    <update id="update" parameterType="com.yangyh.stockdemo.entity.CapitalInfoEntity" flushCache="true">
+        update capital_info
+        <set>
+                    <if test="brokercode != null">
+                        brokercode = #{brokercode
+                        },
+                    </if>
+                    <if test="brokername != null">
+                        brokername = #{brokername
+                        },
+                    </if>
+                    <if test="tradeday != null">
+                        tradeday = #{tradeday
+                        },
+                    </if>
+                    <if test="allamount != null">
+                        allamount = #{allamount
+                        },
+                    </if>
+                    <if test="marketvalue != null">
+                        marketvalue = #{marketvalue
+                        },
+                    </if>
+                    <if test="profitlossrate != null">
+                        profitlossrate = #{profitlossrate
+                        },
+                    </if>
+                    <if test="count != null">
+                        count = #{count
+                        },
+                    </if>
+                    <if test="newnum != null">
+                        newnum = #{newnum
+                        },
+                    </if>
+                    <if test="increasenum != null">
+                        increasenum = #{increasenum
+                        },
+                    </if>
+                    <if test="decreasenum != null">
+                        decreasenum = #{decreasenum
+                        },
+                    </if>
+                    <if test="continuousdays != null">
+                        continuousdays = #{continuousdays
+                        },
+                    </if>
+                    <if test="holdrate != null">
+                        holdrate = #{holdrate
+                        }
+                    </if>
+        </set>
+        where
+        1 = 1
+            and id = #{id}
+            and brokercode = #{brokercode}
+            and brokername = #{brokername}
+            and tradeday = #{tradeday}
+            and allamount = #{allamount}
+            and marketvalue = #{marketvalue}
+            and profitlossrate = #{profitlossrate}
+            and count = #{count}
+            and newnum = #{newnum}
+            and increasenum = #{increasenum}
+            and decreasenum = #{decreasenum}
+            and continuousdays = #{continuousdays}
+            and holdrate = #{holdrate}
+    </update>
+
+    <select id="getTop20AllMount" resultMap="RM_CapitalInfo">
+        select
+        <include refid="CapitalInfo_columns"/>
+        from capital_info
+        order by allamount desc limit 0
+    </select>
+
+    <select id="getTop20ProfitlossrateCapital" resultMap="RM_CapitalInfo">
+        select
+        <include refid="CapitalInfo_columns"/>
+        from capital_info
+        order by profitlossrate desc limit 10
+    </select>
+
+</mapper>

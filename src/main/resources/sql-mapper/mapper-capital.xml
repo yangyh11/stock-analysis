@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yangyh.stockdemo.mapper.CapitalMapper">
+
+    <resultMap id="RM_Capital" type="com.yangyh.stockdemo.entity.CapitalEntity">
+            <result column="brokercode" property="brokercode"/>
+            <result column="brokername" property="brokername"/>
+            <result column="updateTime" property="updatetime"/>
+    </resultMap>
+
+    <sql id="Capital_columns">
+            brokercode,
+            brokername,
+            updateTime
+    </sql>
+
+    <sql id="Capital_where">
+        <where>
+                <if test="brokercode != null">
+                    and brokercode = #{brokercode}
+                </if>
+                <if test="brokername != null">
+                    and brokername = #{brokername}
+                </if>
+                <if test="updatetime != null">
+                    and updateTime = #{updatetime}
+                </if>
+        </where>
+    </sql>
+
+    <select id="queryByMap" resultMap="RM_Capital" parameterType="java.util.Map" useCache="true">
+        select
+        <include refid="Capital_columns"/>
+        from capital
+        <include refid="Capital_where"/>
+    </select>
+
+    <insert id="save" parameterType="com.yangyh.stockdemo.entity.CapitalEntity">
+        insert into capital (
+            brokercode,
+            brokername,
+            updateTime
+        )
+        values (
+            #{brokercode},
+            #{brokername},
+            #{updatetime}
+        )
+    </insert>
+
+    <update id="update" parameterType="com.yangyh.stockdemo.entity.CapitalEntity" flushCache="true">
+        update capital
+        <set>
+                    <if test="brokername != null">
+                        brokername = #{brokername
+                        },
+                    </if>
+                    <if test="updatetime != null">
+                        updateTime = #{updatetime
+                        }
+                    </if>
+        </set>
+        where
+        1 = 1
+            and brokercode = #{brokercode}
+            and brokername = #{brokername}
+            and updateTime = #{updatetime}
+    </update>
+
+</mapper>

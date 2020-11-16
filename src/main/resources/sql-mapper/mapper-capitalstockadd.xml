@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yangyh.stockdemo.mapper.CapitalStockAddMapper">
+
+    <resultMap id="RM_CapitalStockAdd" type="com.yangyh.stockdemo.entity.CapitalStockAddEntity">
+            <result column="profitlossrate" property="profitlossrate"/>
+            <result column="holdtrendimgurl" property="holdtrendimgurl"/>
+            <result column="tradeday" property="tradeday"/>
+            <result column="brokercode" property="brokercode"/>
+            <result column="stockcode" property="stockcode"/>
+            <result column="marketvalue" property="marketvalue"/>
+            <result column="profitloss" property="profitloss"/>
+            <result column="percost" property="percost"/>
+            <result column="isnew" property="isnew"/>
+            <result column="holdnum" property="holdnum"/>
+            <result column="changenum" property="changenum"/>
+            <result column="brokername" property="brokername"/>
+            <result column="allamount" property="allamount"/>
+            <result column="continuousday" property="continuousday"/>
+            <result column="changerate" property="changerate"/>
+            <result column="allcost" property="allcost"/>
+            <result column="holdrate" property="holdrate"/>
+            <result column="industrycode" property="industrycode"/>
+            <result column="industryname" property="industryname"/>
+            <result column="market" property="market"/>
+            <result column="stockname" property="stockname"/>
+    </resultMap>
+
+    <sql id="CapitalStockAdd_columns">
+            profitlossrate,
+            holdtrendimgurl,
+            tradeday,
+            brokercode,
+            stockcode,
+            marketvalue,
+            profitloss,
+            percost,
+            isnew,
+            holdnum,
+            changenum,
+            brokername,
+            allamount,
+            continuousday,
+            changerate,
+            allcost,
+            holdrate,
+            industrycode,
+            industryname,
+            market,
+            stockname
+    </sql>
+
+    <sql id="CapitalStockAdd_where">
+        <where>
+                <if test="profitlossrate != null">
+                    and profitlossrate = #{profitlossrate}
+                </if>
+                <if test="holdtrendimgurl != null">
+                    and holdtrendimgurl = #{holdtrendimgurl}
+                </if>
+                <if test="tradeday != null">
+                    and tradeday = #{tradeday}
+                </if>
+                <if test="brokercode != null">
+                    and brokercode = #{brokercode}
+                </if>
+                <if test="stockcode != null">
+                    and stockcode = #{stockcode}
+                </if>
+                <if test="marketvalue != null">
+                    and marketvalue = #{marketvalue}
+                </if>
+                <if test="profitloss != null">
+                    and profitloss = #{profitloss}
+                </if>
+                <if test="percost != null">
+                    and percost = #{percost}
+                </if>
+                <if test="isnew != null">
+                    and isnew = #{isnew}
+                </if>
+                <if test="holdnum != null">
+                    and holdnum = #{holdnum}
+                </if>
+                <if test="changenum != null">
+                    and changenum = #{changenum}
+                </if>
+                <if test="brokername != null">
+                    and brokername = #{brokername}
+                </if>
+                <if test="allamount != null">
+                    and allamount = #{allamount}
+                </if>
+                <if test="continuousday != null">
+                    and continuousday = #{continuousday}
+                </if>
+                <if test="changerate != null">
+                    and changerate = #{changerate}
+                </if>
+                <if test="allcost != null">
+                    and allcost = #{allcost}
+                </if>
+                <if test="holdrate != null">
+                    and holdrate = #{holdrate}
+                </if>
+                <if test="industrycode != null">
+                    and industrycode = #{industrycode}
+                </if>
+                <if test="industryname != null">
+                    and industryname = #{industryname}
+                </if>
+                <if test="market != null">
+                    and market = #{market}
+                </if>
+                <if test="stockname != null">
+                    and stockname = #{stockname}
+                </if>
+        </where>
+    </sql>
+
+    <select id="queryByMap" resultMap="RM_CapitalStockAdd" parameterType="java.util.Map" useCache="true">
+        select
+        <include refid="CapitalStockAdd_columns"/>
+        from capital_stock_add
+        <include refid="CapitalStockAdd_where"/>
+    </select>
+
+    <insert id="save" parameterType="com.yangyh.stockdemo.entity.CapitalStockAddEntity">
+        insert into capital_stock_add (
+            profitlossrate,
+            holdtrendimgurl,
+            tradeday,
+            brokercode,
+            stockcode,
+            marketvalue,
+            profitloss,
+            percost,
+            isnew,
+            holdnum,
+            changenum,
+            brokername,
+            allamount,
+            continuousday,
+            changerate,
+            allcost,
+            holdrate,
+            industrycode,
+            industryname,
+            market,
+            stockname
+        )
+        values (
+            #{profitlossrate},
+            #{holdtrendimgurl},
+            #{tradeday},
+            #{brokercode},
+            #{stockcode},
+            #{marketvalue},
+            #{profitloss},
+            #{percost},
+            #{isnew},
+            #{holdnum},
+            #{changenum},
+            #{brokername},
+            #{allamount},
+            #{continuousday},
+            #{changerate},
+            #{allcost},
+            #{holdrate},
+            #{industrycode},
+            #{industryname},
+            #{market},
+            #{stockname}
+        )
+    </insert>
+
+    <update id="update" parameterType="com.yangyh.stockdemo.entity.CapitalStockAddEntity" flushCache="true">
+        update capital_stock_add
+        <set>
+                    <if test="profitlossrate != null">
+                        profitlossrate = #{profitlossrate
+                        },
+                    </if>
+                    <if test="holdtrendimgurl != null">
+                        holdtrendimgurl = #{holdtrendimgurl
+                        },
+                    </if>
+                    <if test="tradeday != null">
+                        tradeday = #{tradeday
+                        },
+                    </if>
+                    <if test="brokercode != null">
+                        brokercode = #{brokercode
+                        },
+                    </if>
+                    <if test="stockcode != null">
+                        stockcode = #{stockcode
+                        },
+                    </if>
+                    <if test="marketvalue != null">
+                        marketvalue = #{marketvalue
+                        },
+                    </if>
+                    <if test="profitloss != null">
+                        profitloss = #{profitloss
+                        },
+                    </if>
+                    <if test="percost != null">
+                        percost = #{percost
+                        },
+                    </if>
+                    <if test="isnew != null">
+                        isnew = #{isnew
+                        },
+                    </if>
+                    <if test="holdnum != null">
+                        holdnum = #{holdnum
+                        },
+                    </if>
+                    <if test="changenum != null">
+                        changenum = #{changenum
+                        },
+                    </if>
+                    <if test="brokername != null">
+                        brokername = #{brokername
+                        },
+                    </if>
+                    <if test="allamount != null">
+                        allamount = #{allamount
+                        },
+                    </if>
+                    <if test="continuousday != null">
+                        continuousday = #{continuousday
+                        },
+                    </if>
+                    <if test="changerate != null">
+                        changerate = #{changerate
+                        },
+                    </if>
+                    <if test="allcost != null">
+                        allcost = #{allcost
+                        },
+                    </if>
+                    <if test="holdrate != null">
+                        holdrate = #{holdrate
+                        },
+                    </if>
+                    <if test="industrycode != null">
+                        industrycode = #{industrycode
+                        },
+                    </if>
+                    <if test="industryname != null">
+                        industryname = #{industryname
+                        },
+                    </if>
+                    <if test="market != null">
+                        market = #{market
+                        },
+                    </if>
+                    <if test="stockname != null">
+                        stockname = #{stockname
+                        }
+                    </if>
+        </set>
+        where
+        1 = 1
+            and profitlossrate = #{profitlossrate}
+            and holdtrendimgurl = #{holdtrendimgurl}
+            and tradeday = #{tradeday}
+            and brokercode = #{brokercode}
+            and stockcode = #{stockcode}
+            and marketvalue = #{marketvalue}
+            and profitloss = #{profitloss}
+            and percost = #{percost}
+            and isnew = #{isnew}
+            and holdnum = #{holdnum}
+            and changenum = #{changenum}
+            and brokername = #{brokername}
+            and allamount = #{allamount}
+            and continuousday = #{continuousday}
+            and changerate = #{changerate}
+            and allcost = #{allcost}
+            and holdrate = #{holdrate}
+            and industrycode = #{industrycode}
+            and industryname = #{industryname}
+            and market = #{market}
+            and stockname = #{stockname}
+    </update>
+
+</mapper>

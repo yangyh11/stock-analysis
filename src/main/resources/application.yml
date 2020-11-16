@@ -1,0 +1,21 @@
+mybatis:
+  mapper-locations: classpath:sql-mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/stock?jdbcCompliantTruncation=false&useUnicode=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+    username: root
+    password: 123456
+#  data:
+#    elasticsearch:
+#      cluster-name: my-application
+#      cluster-nodes: 159.138.134.49:9200
+
+#日志
+logging:
+  level:
+    com.yangyh: debug
+server:
+  port: 8081
